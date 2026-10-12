@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e91e63">
+<title>SAMIRA — Дӯкони онлайн</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#fff5f8;color:#222}
+header{background:#e91e63;color:white;padding:22px;text-align:center}
+h1{margin:0}
+main{padding:18px}
+input,button{box-sizing:border-box;width:100%;padding:13px;margin:8px 0;border-radius:10px;border:1px solid #ddd;font-size:16px}
+button{background:#e91e63;color:white;border:0;font-weight:bold}
+.card{background:white;padding:16px;margin:12px 0;border-radius:14px;box-shadow:0 2px 8px #ddd}
+footer{text-align:center;padding:20px;color:#777}
+</style>
+</head>
+<body>
+<header>
+<h1>🌸 SAMIRA</h1>
+<p>Дӯкони онлайни либос</p>
+</header>
+<main>
+<input id="search" placeholder="🔎 Ҷустуҷӯи мол..." oninput="showProducts()">
+<div id="products"></div>
+<div class="card">
+<h3>🛍️ Фурӯшанда — иловаи мол</h3>
+<input id="name" placeholder="Номи мол">
+<input id="price" type="number" placeholder="Нарх бо сомонӣ">
+<button onclick="addProduct()">Илова кардани мол</button>
+</div>
+<div class="card">
+<h3>📦 Фармоиши харидор</h3>
+<p>Барои фармоиш молро интихоб карда, бо фурӯшанда тамос гиред.</p>
+</div>
+</main>
+<footer>SAMIRA © 2026</footer>
+<script>
+let products=[];
+function showProducts(){
+let q=document.getElementById('search').value.toLowerCase();
+document.getElementById('products').innerHTML=products.filter(p=>p.name.toLowerCase().includes(q)).map(p=>`<div class="card"><b>${p.name}</b><p>${p.price} сомонӣ</p><button onclick="alert('Барои фармоиш бо фурӯшанда тамос гиред')">Фармоиш</button></div>`).join('');
+}
+function addProduct(){
+let name=document.getElementById('name').value.trim();
+let price=document.getElementById('price').value;
+if(!name||!price){alert('Номи мол ва нархро нависед');return}
+products.push({name,price});
+document.getElementById('name').value='';
+document.getElementById('price').value='';
+showProducts();
+}
+showProducts();
+</script>
+</body>
+</html>
